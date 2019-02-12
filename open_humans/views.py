@@ -341,6 +341,7 @@ class ActivityManagementView(NeverCacheMixin, LargePanelMixin, TemplateView):
 
             project_permissions = {
                 'share_username': project.request_username_access,
+                'share_sources': requested_activities,
                 'all_sources': project.all_sources_access,
                 'returned_data_description': project.returned_data_description,
             }
@@ -349,6 +350,7 @@ class ActivityManagementView(NeverCacheMixin, LargePanelMixin, TemplateView):
                 granted_sources = project_member.granted_sources.all()
                 granted_permissions = {
                     'share_username': project_member.username_shared,
+                    'share_sources': project_member.granted_sources.all(),
                     'all_sources': project_member.all_sources_shared,
                     'returned_data_description': project.returned_data_description,
                 }
