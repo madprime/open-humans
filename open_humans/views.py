@@ -316,8 +316,8 @@ class ActivityManagementView(NeverCacheMixin, LargePanelMixin, TemplateView):
                 parent_project_data_file__completed=False).distinct(
                     'user').filter(user__in=public_users).count()
 
-        requesting_activities = DataRequestProject.objects.filter(
-            requested_sources__in=[self.project])
+        requesting_activities = self.project.requesting_projects.filter(
+            approved=True).filter(active=True)
         requested_activities = self.project.requested_sources.all()
         data_is_public = False
 
